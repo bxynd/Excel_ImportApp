@@ -1,0 +1,71 @@
+﻿@model List<Personnel>
+@{
+    ViewData["Title"] = "Upload";
+}
+
+@* form used to populate the file *@
+<form  method="post" enctype="multipart/form-data" asp-controller="Upload" asp-action="FileUpload">
+    <div class="form-group">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Upload the csv file</label>
+            <input  class="form-control" type="file" id="formFile" name="file"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input  type="submit" value="Upload" class="btn btn-primary"/>
+        </div>
+    </div>
+    <br/>
+
+</form>
+
+@* the table that will be displayed upon submission->addition to database *@
+<table id="table" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Surename</th>
+        <th>Forename</th>
+        <th>Payroll number</th>
+        <th>Date of birth</th>
+        <th>Telephone</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Address2</th>
+        <th>Postcode</th>
+        <th>EmailHome</th>
+        <th>Start date</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Surename</td>
+                <td>@item.Forename</td>
+                <td>@item.PayrollNumber</td>
+                <td>@item.DateOfBirth.Date</td>
+                <td>@item.Telephone</td>
+                <td>@item.Mobile</td>
+                <td>@item.Address</td>
+                <td>@item.Address2</td>
+                <td>@item.Postcode</td>
+                <td>@item.EmailHome</td>
+                <td>@item.StartDate.Date</td>
+                <td>
+                    
+                <form method="post" enctype="multipart/form-data" asp-controller="Upload" asp-action="UpdatePage" asp-route-id=@item.Id>
+                            @foreach (var record in Model)
+                            {
+                                <input type="hidden" name="result[]" value=@record.Id>
+                            }
+                        <input type="submit" class="btn btn-primary" value="Edit">
+                    </form>
+                </td>
+            </tr>
+        }
+    }
+</table>

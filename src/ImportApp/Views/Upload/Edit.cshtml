@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+}
+
+@* the form that will be used to edit a record *@
+<form class="modal-body" id="goBack" method="post" asp-controller="Upload" asp-action="GetBack" enctype="application/x-www-form-urlencoded">
+        @foreach (var id in ViewBag.recordIds)
+        {
+            <input type="hidden" name="result[]" value=@id>
+        }
+    <input type="submit" class="btn btn-primary" value="< Back">
+</form>
+<form class="modal-body" id="editForm" method="post" asp-controller="Upload" asp-action="UpdateRecord" asp-route-id=@ViewBag.record.Id enctype="application/x-www-form-urlencoded">
+    @foreach (var id in ViewBag.recordIds)
+    {
+        <input type="hidden" name="result[]" value=@id>
+    }
+    <div class="mb-3">
+        <label for="inputSurename" class="form-label">Surename</label>
+        <input id="inputSurename" class="form-control" type="text" name="Surename" value=@ViewBag.record.Surename>
+    </div>
+    <div class="mb-3">
+        <label for="inputForename" class="form-label">Forename</label>
+        <input type="text" class="form-control" id="inputForename" name="Forename" value=@ViewBag.record.Forename>
+    </div>
+    <div class="mb-3">
+        <label for="inputPayrollNumber" class="form-label">Payroll Number</label>
+        <input type="text" class="form-control" id="inputPayrollNumber" name="PayrollNumber" value=@ViewBag.record.PayrollNumber>
+    </div>
+    <div class="mb-3">
+        <label for="inputDateOfBirth" class="form-label">Date of birth</label>
+        <input type="text" class="form-control" id="inputDateOfBirth" name="DateOfBirth" value=@ViewBag.record.DateOfBirth>
+    </div>
+    <div class="mb-3">
+        <label for="inputTelephone" class="form-label">Telephone</label>
+        <input type="text" class="form-control" id="inputTelephone" name="Telephone" value=@ViewBag.record.Telephone>
+    </div>
+    <div class="mb-3">
+        <label for="inputMobile" class="form-label">Mobile</label>
+        <input type="text" class="form-control" id="inputMobile" name="Mobile" value=@ViewBag.record.Mobile>
+    </div>
+    <div class="mb-3">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" class="form-control" id="inputAddress" name="Address" value=@ViewBag.record.Address>
+    </div>
+    <div class="mb-3">
+        <label for="inputAddress2" class="form-label">Address2</label>
+        <input type="text" class="form-control" id="inputAddress2" name="Address2" value=@ViewBag.record.Address2>
+    </div>
+    <div class="mb-3">
+        <label for="inputPostcode" class="form-label">Postcode</label>
+        <input type="text" class="form-control" id="inputPostcode" name="Postcode" value=@ViewBag.record.Postcode>
+    </div>
+    <div class="mb-3">
+        <label for="inputEmailHome" class="form-label">EmailHome</label>
+        <input type="text" class="form-control" id="inputEmailHome" name="EmailHome" value=@ViewBag.record.EmailHome>
+    </div>
+    <div class="mb-3">
+        <label for="inputStartDate" class="form-label">Start date</label>
+        <input type="text" class="form-control" id="inputStartDate" name="StartDate" value=@ViewBag.record.StartDate>
+    </div>
+    <input type="submit" class="btn btn-primary">
+</form>
